@@ -144,7 +144,155 @@ class RMS:
 
 
     def askUserOptions(self):
-        return
+        print("What would you like to do?\n  1. Add a new recipe\n  2. Display a recipe\n  3. Delete an existing recipe\n  4. Edit an existing recipe\n  5. Export available recipes\n  6. Import new recipes\n  7. Exit\n")   
+        while True:
+            choice = input("Enter your choice: ")
+            if not choice.isalpha() and choice!="" and (int(choice)>=1 and int(choice)<=7):
+                break
+            else:
+                print("Enter a response from the available choices! ")
+        while int(choice) != -1:
+            if int(choice) == 1:
+                while True:
+                    name = input("Enter recipe name: ")
+                    if not name.isnumeric() and name!="" and (name.lstrip('-').isdigit()==False):
+                        break
+                    else:
+                        print("Enter a valid recipe name! ")
+                while True:
+                    ingredients = input("Enter ingredients required: ")
+                    if ingredients !="" and (ingredients.lstrip('-').isdigit()==False) and not ingredients.isnumeric():
+                        break
+                    else:
+                        print("Enter ingredients! ")
+                while True:
+                    instructions = input("Enter instructions for the recipe: ")
+                    if instructions !="" and (instructions.lstrip('-').isdigit()==False) and not instructions.isnumeric():
+                        break
+                    else:
+                        print("Enter instructions! ")
+                while True:
+                    category = input("Enter category: ")
+                    if category !="" and (category.lstrip('-').isdigit()==False) and not category.isnumeric():
+                        break
+                    else:
+                        print("Enter a valid category! ")                     
+                while True:
+                    rating = input("Provide ratings for the recipe: ")
+                    if rating !="" and not rating.isalpha() and not rating.startswith("-"):
+                        break
+                    else:
+                        print("Enter a valid rating! ")                
+                rec = Recipe(name,ingredients,instructions,category,int(rating))     
+                self.addRecipe(rec)
+                while True:
+                    choice = input("Enter your choice: ")
+                    if not choice.isalpha() and choice!="" and (int(choice)>=1 and int(choice)<=7):
+                        break
+                    else:
+                        print("Enter a response from the available choices! ")            
+            if int(choice) == 2:
+                print("\nAvailable recipes: ")
+                for i in self.recipes:
+                    print(str(i['id'])+". "+str(i['name']))
+                while True:
+                    name = input("\nEnter recipe id to view: ")
+                    x = False
+                    if len(self.recipes)==0:
+                        x = True
+                    for i in self.recipes:
+                        if name==str(i['id']):
+                            x = True
+                    if not name.isalpha() and (x==True):   
+                            break
+                    else:
+                        print("\nEnter an id from the available options! ")
+                self.viewRecipe(int(name))
+                while True:
+                    choice = input("Enter your choice: ")
+                    if not choice.isalpha() and choice!="" and (int(choice)>=1 and int(choice)<=7):
+                        break
+                    else:
+                        print("Enter a response from the available choices! ")
+            if int(choice) == 3:
+                print("\nAvailable recipes: ")
+                for i in self.recipes:
+                    print(str(i['id'])+". "+str(i['name']))
+                while True:
+                    name = input("\nEnter recipe id to delete or enter 0 to exit: ")
+                    x = False
+                    for i in self.recipes:
+                        if name==str(i['id']):
+                            x = True
+                    if not name.isalpha() and (x==True or name=='0'):
+                        break
+                    else:
+                        print("\nEnter an id from the available options or enter 0 to exit! ")      
+                self.deleteRecipe(int(name))
+                while True:
+                    choice = input("Enter your choice: ")
+                    if not choice.isalpha() and choice!="" and (int(choice)>=1 and int(choice)<=7):
+                        break
+                    else:
+                        print("Enter a response from the available choices! ")
+            if int(choice) == 4:
+                print("\nAvailable recipes: ")
+                for i in self.recipes:
+                    print(str(i['id'])+". "+str(i['name']))
+                while True:
+                    name = input("\nEnter recipe name to edit: ")
+                    x = False
+                    for i in self.recipes:
+                        if name==str(i['id']):
+                            x = True
+                    if not name.isalpha() and (x==True):
+                        break
+                    else:
+                        print("\nEnter an id from the available options! ")              
+                print("Available fields to edit:\n  1. name\n  2. ingredients\n  3. instructions\n  4. category\n  5. rating\n  6. exit\n")
+                while True:
+                    ch = input("Enter field number to edit: ")
+                    if not ch.isalpha() and (int(ch)>=1 and int(ch)<=6):
+                        break
+                    else:
+                        print("\nEnter a choice between 1-6! ")
+                        print("Available fields to edit:\n  1. name\n  2. ingredients\n  3. instructions\n  4. category\n  5. rating\n  6. exit\n")
+                if ch!='6':
+                    new_data = input("Enter info to edit: ")
+                    self.editRecipe(int(name),int(ch),new_data)
+                    while True:
+                        choice = input("Enter your choice: ")
+                        if not choice.isalpha() and choice!="" and (int(choice)>=1 and int(choice)<=7):
+                            break
+                        else:
+                            print("Enter a response from the available choices! ")
+                else:
+                    while True:
+                        choice = input("Enter your choice: ")
+                        if not choice.isalpha() and choice!="" and (int(choice)>=1 and int(choice)<=7):
+                            break
+                        else:
+                            print("Enter a response from the available choices! ")
+            if int(choice) == 5:
+                name = input("\nEnter file name to be saved as: ")
+                self.exportRecipe(name)
+                while True:
+                    choice = input("Enter your choice: ")
+                    if not choice.isalpha() and choice!="" and (int(choice)>=1 and int(choice)<=7):
+                        break
+                    else:
+                        print("Enter a response from the available choices! ")
+            if int(choice) == 6:
+                name = input("\nEnter file name to import recipes: ")
+                self.importRecipe(name)
+                while True:
+                    choice = input("Enter your choice: ")
+                    if not choice.isalpha() and choice!="" and (int(choice)>=1 and int(choice)<=7):
+                        break
+                    else:
+                        print("Enter a response from the available choices! ")
+            if int(choice) == 7:
+                self.exitRecipe()
            
             
     def exitRecipe(self):
