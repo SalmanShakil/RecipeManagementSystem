@@ -43,8 +43,23 @@ class RMS:
             print("\nRecipe Added")
 
 
-    def viewRecipe(self):
-        return
+    def viewRecipe(self,name):
+        if len(self.recipes)==0:
+            print("No recipes available to view")
+            return
+        x = False
+        if type(name) != int:
+            print("Error: Provide an int input as id to view recipe")
+        for rec in self.recipes:
+            if rec['id']==name:
+                print("\nRecipe Name: "+rec['name'])
+                print("Ingredients Required: "+rec['ingredients'])
+                print("Instructions: "+rec['instructions'])
+                print("Category: "+rec['category'])
+                print("Rating: "+str(rec['rating']))
+                x = True
+        if x == False:
+            print("Recipe not found")
             
 
     def deleteRecipe(self):
