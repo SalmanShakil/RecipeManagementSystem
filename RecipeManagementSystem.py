@@ -55,8 +55,16 @@ class RMS:
         return
 
 
-    def exportRecipe(self):
-        return
+    def exportRecipe(self,name):
+        if len(self.recipes)==0:
+            print("There are no recipes to export!")
+            return
+        jsonString = json.dumps(self.recipes)
+        n = name+".json"
+        jsonFile = open(n,"w")
+        jsonFile.write(jsonString)
+        jsonFile.close()
+        print("\nRecipes Exported")
 
 
     def importRecipe(self):
