@@ -133,8 +133,14 @@ class RMS:
         print("\nRecipes Exported")
 
 
-    def importRecipe(self):
-        return
+    def importRecipe(self,name):
+        n = name+".json"
+        fileObject = open(n, "r")
+        jsonContent = fileObject.read()
+        fileObject.close()
+        aList = json.loads(jsonContent)
+        self.recipes = aList
+        print("\nRecipes Imported")
 
 
     def askUserOptions(self):
