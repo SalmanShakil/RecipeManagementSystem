@@ -62,8 +62,20 @@ class RMS:
             print("Recipe not found")
             
 
-    def deleteRecipe(self):
-        return
+    def deleteRecipe(self,name):
+        x = False
+        if type(name)!=int or name=="":
+            print("Error: Provide an int input as id to delete recipe")
+            return
+        for rec in self.recipes:
+            if rec['id']==name:
+                self.recipes.remove(rec)
+                print("\nRecipe Removed")
+                x = True
+            elif name == 0:
+                return
+        if x == False:
+            print("Unable to delete, Recipe does not exist!")
 
 
     def editRecipe(self,name,ch,new_data):
