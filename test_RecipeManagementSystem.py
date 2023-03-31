@@ -132,3 +132,8 @@ class TestRMS(unittest.TestCase):
         management.addRecipe(recipe1)
         management.addRecipe(recipe2)
         management.deleteRecipe(3)
+    
+    
+    def test_exportRecipe_1(self):
+        management = RecipeManagementSystem.RMS()
+        management.exportRecipe("SOUP AND PIZZA")
