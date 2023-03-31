@@ -51,8 +51,47 @@ class RMS:
         return
 
 
-    def editRecipe(self):
-        return
+    def editRecipe(self,name,ch,new_data):
+        if type(name)!=int or name=="":
+            print("Error: Provide an int input as id to edit recipe")
+            return
+        if type(ch)!=int or (ch>6 and ch<1):
+            print("Error: Provide an int input between 1-6 as field id to edit recipe")
+            return  
+        for rec in self.recipes:
+            if rec['id']==name:
+                if ch==1:
+                    if new_data.isnumeric() or (new_data=="") or (new_data.lstrip('-').isdigit()==True):
+                        print("Error: Provide a valid recipe name")
+                        return
+                    rec['name']=new_data
+                    print("Updated recipe "+rec['name'])
+                elif ch==2:
+                    if new_data.isnumeric() or (new_data=="") or (new_data.lstrip('-').isdigit()==True):
+                        print("Error: Provide valid ingredients for recipe")
+                        return
+                    rec['ingredients']=new_data
+                    print("Ingredients updated for "+rec['name'])
+                elif ch==3:
+                    if new_data.isnumeric() or (new_data=="") or (new_data.lstrip('-').isdigit()==True):
+                        print("Error: Provide valid instructions for recipe")
+                        return
+                    rec['instructions']=new_data
+                    print("Instructions updated for "+rec['name'])
+                elif ch==4:
+                    if new_data.isnumeric() or (new_data=="") or (new_data.lstrip('-').isdigit()==True):
+                        print("Error: Provide valid category for recipe")
+                        return
+                    rec['category']=new_data
+                    print("Category updated for "+rec['name'])
+                elif ch==5:
+                    if not new_data.isnumeric() or (new_data=="") or new_data.startswith("-"):
+                        print("Error: Provide int input for rating")
+                        return
+                    rec['rating']=new_data
+                    print("Rating updated for "+rec['name'])
+                else:
+                    print("Select one of the fields available.")
 
 
     def exportRecipe(self,name):
