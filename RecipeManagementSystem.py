@@ -148,4 +148,4 @@ class RMS:
            
             
     def exitRecipe(self):
-        return
+        sys.exit(0)
