@@ -133,7 +133,21 @@ class TestRMS(unittest.TestCase):
         management.addRecipe(recipe2)
         management.deleteRecipe(3)
     
-    
+
     def test_exportRecipe_1(self):
         management = RecipeManagementSystem.RMS()
         management.exportRecipe("SOUP AND PIZZA")
+    
+
+    def test_editRecipe_1(self):
+        management = RecipeManagementSystem.RMS()
+        recipe1 = RecipeManagementSystem.Recipe("soup", "tomato, tomato paste, water, spices", "boil all ingredients together and leave for 30 minutes", "appetizer", 5)
+        recipe2 = RecipeManagementSystem.Recipe("pizza", "chicken, ranch sauce, mushrooms", "bake for 30 minutes", "main", 5)         
+        management.addRecipe(recipe1)
+        management.addRecipe(recipe2)
+        management.editRecipe("2",1,"Pasta")
+        management.editRecipe(1,"sd","Tomato Soup")
+        addedRecipe = {'id': 2, 'name': 'Pasta', 'ingredients': 'chicken, ranch sauce, mushrooms', 'instructions': 'bake for 30 minutes', 'category': 'main', 'rating': 5}
+        addedRecipe1 = {'id': 1, 'name': 'Tomato Soup', 'ingredients': 'tomato, tomato paste, water, spices', 'instructions': 'boil all ingredients together and leave for 30 minutes', 'category': 'appetizer', 'rating': 5}
+        self.assertNotIn(addedRecipe, management.recipes)
+        self.assertNotIn(addedRecipe1, management.recipes)
