@@ -297,3 +297,6 @@ class RMS:
             
     def exitRecipe(self):
         sys.exit(0)
+
+r = RMS()
+#r.askUserOptions()
