@@ -160,6 +160,11 @@ class TestRMS(unittest.TestCase):
         management.editRecipe(1,1,999)
         addedRecipe1 = {'id': 1, 'name': 999, 'ingredients': 'tomato, tomato paste, water, spices', 'instructions': 'boil all ingredients together and leave for 30 minutes', 'category': 'appetizer', 'rating': 5}
         self.assertNotIn(addedRecipe1, management.recipes)
+    
+
+    def test_importRecipe_1(self):
+        management = RecipeManagementSystem.RMS()
+        management.importRecipe("blah-blah")
 
 if __name__ == '__main__':
     unittest.main()
