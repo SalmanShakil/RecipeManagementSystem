@@ -1,4 +1,4 @@
-import sys,json
+import sys,json,os
 class Recipe:
     def __init__(self,name,ingredients,instructions,category,rating):
         self.name = name
@@ -133,14 +133,16 @@ class RMS:
         print("\nRecipes Exported")
 
 
-    def importRecipe(self,name):
-        n = name+".json"
-        fileObject = open(n, "r")
-        jsonContent = fileObject.read()
-        fileObject.close()
-        aList = json.loads(jsonContent)
-        self.recipes = aList
-        print("\nRecipes Imported")
+    def importRecipe(self, name):
+        n = name + ".json"
+        if os.path.exists(n):
+            with open(n, "r") as fileObject:
+                jsonContent = fileObject.read()
+            aList = json.loads(jsonContent)
+            self.recipes = aList
+            print("\nRecipes Imported")
+        else:
+            print("Error: File not found.")
 
 
     def askUserOptions(self):
