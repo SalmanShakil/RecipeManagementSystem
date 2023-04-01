@@ -88,6 +88,14 @@ class TestRMSIntegration(unittest.TestCase):
         management.addRecipe(recipe1)           
         management.editRecipe(1,1,"Spicy Chicken Curry")                                      
         management.exportRecipe("Curries")
+    
+
+    def test_import_add_edit_recipe(self):
+        management = RecipeManagementSystem.RMS()
+        management.importRecipe('Curries')
+        recipe1 = RecipeManagementSystem.Recipe("Chocolate Cake", "flour, sugar, cocoa powder, baking soda, baking powder, salt, eggs, milk, oil, vanilla extract, hot water", "1. Preheat oven to 350F. 2. Mix dry ingredients in a bowl. 3. Add wet ingredients and mix until smooth. 4. Grease a cake pan and pour in batter. 5. Bake for 30-35 minutes. 6. Let cool before frosting with your choice of frosting.", "Dessert", 5)
+        management.addRecipe(recipe1)           
+        management.editRecipe(2,1,"Chocolate-Cake")                                      
 
 if __name__ == '__main__':
     unittest.main()
