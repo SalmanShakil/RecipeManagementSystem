@@ -27,6 +27,19 @@ class TestRMSIntegration(unittest.TestCase):
         sys.stdout = sys.__stdout__
         expected_output = "No recipes available to view\n"
         self.assertEqual(captured_output.getvalue(), expected_output)
+    
+
+    def test_add_edit_recipe(self):
+        management = RecipeManagementSystem.RMS()
+        recipe3 = RecipeManagementSystem.Recipe("Pesto Pasta", "pasta, pesto sauce, cherry tomatoes, parmesan cheese", "1. Cook pasta. 2. Add pesto sauce. 3. Add cherry tomatoes. 4. Top with parmesan cheese.", "Italian", 4)
+        management.addRecipe(recipe3)
+        management.editRecipe(1, 1, "Spaghetti with Pesto")   
+        captured_output = io.StringIO()
+        sys.stdout = captured_output
+        management.viewRecipe(1)       
+        sys.stdout = sys.__stdout__
+        expected_output = "\nRecipe Name: Spaghetti with Pesto\nIngredients Required: pasta, pesto sauce, cherry tomatoes, parmesan cheese\nInstructions: 1. Cook pasta. 2. Add pesto sauce. 3. Add cherry tomatoes. 4. Top with parmesan cheese.\nCategory: Italian\nRating: 4\n"
+        self.assertEqual(captured_output.getvalue(), expected_output)
 
 if __name__ == '__main__':
     unittest.main()
