@@ -112,7 +112,7 @@ class RMS:
                     rec['category']=new_data
                     print("Category updated for "+rec['name'])
                 elif ch==5:
-                    if type(new_data)==str or (new_data=="") or new_data.startswith("-"):
+                    if not new_data.isdigit() or (new_data=="") or new_data.startswith("-"):
                         print("Error: Provide int input for rating")
                         return
                     rec['rating']=new_data
@@ -185,7 +185,7 @@ class RMS:
                         break
                     else:
                         print("Enter a valid rating! ")                
-                rec = Recipe(name,ingredients,instructions,category,int(rating))     
+                rec = Recipe(name,ingredients,instructions,category,float(rating))     
                 self.addRecipe(rec)
                 while True:
                     choice = input("Enter your choice: ")
@@ -301,4 +301,4 @@ class RMS:
         sys.exit(0)
 
 r = RMS()
-#r.askUserOptions()
+r.askUserOptions()
